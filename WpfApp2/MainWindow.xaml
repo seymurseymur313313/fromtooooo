@@ -14,8 +14,8 @@
         <Button Content="OPEN" HorizontalAlignment="Left" Margin="609,86,0,0" VerticalAlignment="Top" Width="57" Height="23"/>
         <Button Content="OPEN" HorizontalAlignment="Left" Margin="609,150,0,0" VerticalAlignment="Top" Width="57" Height="23"/>
         <ProgressBar x:Name="bar" HorizontalAlignment="Left" Height="40" Margin="64,268,0,0" VerticalAlignment="Top" Width="602" Minimum="0" Maximum="100" Value="0" />
-        <Button Content="Suspend" HorizontalAlignment="Left" Margin="104,344,0,0" VerticalAlignment="Top" Width="118" Height="41" FontSize="16"/>
-        <Button x:Name="resum"  Content="Resume" HorizontalAlignment="Left" Margin="282,344,0,0" VerticalAlignment="Top" Width="118" Height="41" FontSize="16"/>
+        <Button Content="Suspend" HorizontalAlignment="Left" Margin="104,344,0,0" VerticalAlignment="Top" Width="118" Height="41" FontSize="16" Click="Button_Click_1"/>
+        <Button x:Name="resum"  Content="Resume" HorizontalAlignment="Left" Margin="282,344,0,0" VerticalAlignment="Top" Width="118" Height="41" FontSize="16" Click="resum_Click"/>
         <Button Content="Start" HorizontalAlignment="Left" Margin="505,344,0,0" VerticalAlignment="Top" Width="118" Height="41" FontSize="16" Click="Button_Click"/>
 
     </Grid>

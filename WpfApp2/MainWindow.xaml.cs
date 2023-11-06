@@ -25,13 +25,13 @@ namespace WpfApp2
         {
             InitializeComponent();
         }
-
+        Thread thread1 = new Thread(() => { });
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string a=txtfrom.Text;
             bar.Maximum = a.Length; 
-
-            Thread thread1 = new Thread(() =>
+            
+            thread1 = new Thread(() =>
 
             {
             for (int i = 0; i < a.Length; i++)
@@ -41,7 +41,7 @@ namespace WpfApp2
                     {
                         txtto.Text += a[i];
                         bar.Value += 1;
-
+                        
 
                     });
                     Thread.Sleep(1000); 
@@ -51,9 +51,21 @@ namespace WpfApp2
                 
             });
             thread1.Start();
+            
 
 
         }
 
+   
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            thread1.Suspend();
+        }
+
+        private void resum_Click(object sender, RoutedEventArgs e)
+        {
+            thread1.Resume();
+        }
     }
 }
