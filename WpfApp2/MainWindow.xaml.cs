@@ -1,71 +1,93 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Win32;
+using System;
+using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfApp2
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        private Thread thread1 = new Thread(() => { });
+
         public MainWindow()
         {
             InitializeComponent();
         }
-        Thread thread1 = new Thread(() => { });
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        void TextTransfer()
         {
-            string a=txtfrom.Text;
-            bar.Maximum = a.Length; 
-            
-            thread1 = new Thread(() =>
-
+            Application.Current.Dispatcher.Invoke(() =>
             {
-            for (int i = 0; i < a.Length; i++)
-            {
+                string ilkDosyaYolu = txtfrom.Text;
+                string ikinciDosyaYolu = txtto.Text;
 
-                    Application.Current.Dispatcher.Invoke(() =>
+                using (StreamReader sr = new StreamReader(ilkDosyaYolu))
+                {
+                    using (StreamWriter sw = new StreamWriter(ikinciDosyaYolu))
                     {
-                        txtto.Text += a[i];
-                        bar.Value += 1;
-                        
+                        string satir;
+                        while ((satir = sr.ReadLine()) != null)
+                        {
+                            foreach (char harf in satir)
+                            {
+                                sw.Write(harf);
 
-                    });
-                    Thread.Sleep(1000); 
-                    
-            } 
-                
-                
+                                Application.Current.Dispatcher.Invoke(() =>
+                                {
+                                    bar.Value += 1;
+                                });
+
+                                Thread.Sleep(10); // Gerekirse bu değeri ayarlayabilirsiniz
+                            }
+                            sw.WriteLine();
+                        }
+                    }
+                }
             });
-            thread1.Start();
-            
-
-
         }
 
-   
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (!thread1.IsAlive)
+            {
+                thread1 = new Thread(() =>
+                {
+                    TextTransfer();
+                });
+                thread1.Start();
+            }
+        }
+
+        private void resum_Click_1(object sender, RoutedEventArgs e)
+        {
+            thread1.Resume();
+        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             thread1.Suspend();
         }
 
-        private void resum_Click(object sender, RoutedEventArgs e)
+        private void open1_Click(object sender, RoutedEventArgs e)
         {
-            thread1.Resume();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text  (*.txt)|*.txt";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string dosyaYolu = openFileDialog.FileName;
+                txtfrom.Text = openFileDialog.FileName;
+            }
+        }
+
+        private void open2_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text  (*.txt)|*.txt";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                txtto.Text = openFileDialog.FileName;
+            }
         }
     }
 }

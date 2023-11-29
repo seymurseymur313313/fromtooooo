@@ -11,12 +11,12 @@
         <TextBlock HorizontalAlignment="Left" Margin="64,144,0,0" TextWrapping="Wrap" Text="TO" VerticalAlignment="Top" Width="102" Height="35" FontSize="20"/>
         <TextBox x:Name="txtfrom" HorizontalAlignment="Left" Margin="205,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276" Height="35"/>
         <TextBox x:Name="txtto" HorizontalAlignment="Left" Margin="205,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276" Height="35"/>
-        <Button Content="OPEN" HorizontalAlignment="Left" Margin="609,86,0,0" VerticalAlignment="Top" Width="57" Height="23"/>
-        <Button Content="OPEN" HorizontalAlignment="Left" Margin="609,150,0,0" VerticalAlignment="Top" Width="57" Height="23"/>
+        <Button x:Name="open1" Content="OPEN" HorizontalAlignment="Left" Margin="609,86,0,0" VerticalAlignment="Top" Width="57" Height="23" Click="open1_Click" />
+        <Button x:Name="open2" Content="OPEN" HorizontalAlignment="Left" Margin="609,150,0,0" VerticalAlignment="Top" Width="57" Height="23" Click="open2_Click" />
         <ProgressBar x:Name="bar" HorizontalAlignment="Left" Height="40" Margin="64,268,0,0" VerticalAlignment="Top" Width="602" Minimum="0" Maximum="100" Value="0" />
-        <Button Content="Suspend" HorizontalAlignment="Left" Margin="104,344,0,0" VerticalAlignment="Top" Width="118" Height="41" FontSize="16" Click="Button_Click_1"/>
-        <Button x:Name="resum"  Content="Resume" HorizontalAlignment="Left" Margin="282,344,0,0" VerticalAlignment="Top" Width="118" Height="41" FontSize="16" Click="resum_Click"/>
-        <Button Content="Start" HorizontalAlignment="Left" Margin="505,344,0,0" VerticalAlignment="Top" Width="118" Height="41" FontSize="16" Click="Button_Click"/>
+        <Button Content="Suspend" HorizontalAlignment="Left" Margin="104,344,0,0" VerticalAlignment="Top" Width="118" Height="41" FontSize="16" Click="Button_Click_1" />
+        <Button x:Name="resum"  Content="Resume" HorizontalAlignment="Left" Margin="282,344,0,0" VerticalAlignment="Top" Width="118" Height="41" FontSize="16" Click="resum_Click_1"/>
+        <Button Content="Start" HorizontalAlignment="Left" Margin="505,344,0,0" VerticalAlignment="Top" Width="118" Height="41" FontSize="16" Click="Button_Click" />
 
     </Grid>
 </Window>
